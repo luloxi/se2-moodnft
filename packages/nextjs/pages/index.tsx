@@ -55,7 +55,7 @@ const Home: NextPage = () => {
               <Link className=" underline-offset-4 underline" href={"https://scaffoldeth.io/"}>
                 Scaffold-ETH 2
               </Link>{" "}
-              to display information about the NFT and allow to flip it's mood.
+              to display information about the NFT and allow to flip it&apos;s mood.
             </div>
 
             <div className="flex items-center justify-center mb-4">
