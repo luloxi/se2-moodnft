@@ -65,7 +65,13 @@ const Home: NextPage = () => {
             <div className="mb-4">
               There&apos;s a total supply of {totalSupply?.toString()} MoodNFTs
               <br />
-              You own <strong>{myTotalBalance?.toString()}</strong> MoodNFTs!
+              {connectedAddress ? (
+                <>
+                  You own <strong>{myTotalBalance?.toString()}</strong> MoodNFTs!
+                </>
+              ) : (
+                "Connect your wallet to see how many MoodNFTs you own!"
+              )}
             </div>
 
             <div className="flex gap-3 justify-center">
@@ -75,6 +81,16 @@ const Home: NextPage = () => {
               <Link href={"./seecollection"}>
                 <button className="btn btn-primary">See collection!</button>
               </Link>
+            </div>
+            <div className="py-3">
+              <Link className="underline underline-offset-4" href="https://github.com/luloxi/se2-moodnft">
+                Repo
+              </Link>{" "}
+              made by{" "}
+              <Link href="https://twitter.com/LuloxEth" className="underline underline-offset-4">
+                Lulox
+              </Link>{" "}
+              🐱
             </div>
           </div>
         </div>
