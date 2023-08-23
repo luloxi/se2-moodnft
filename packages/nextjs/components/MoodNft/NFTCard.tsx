@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Attribute } from "./types";
-import { useAccount } from "wagmi";
+// import { useAccount } from "wagmi";
 import { Address, AddressInput } from "~~/components/scaffold-eth";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 

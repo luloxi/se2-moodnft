@@ -6,6 +6,8 @@ Used [Scaffold-ETH 2](https://www.scaffoldeth.io/) from `npx create-eth@latest` 
 
 ## Reference repos
 
+[Development notes](https://lulox.notion.site/se2-moodnft-b81804448c6c4434aec8783491c0f970?pvs=4)
+
 Smart contracts: [foundry-nft-f23](https://github.com/Cyfrin/foundry-nft-f23)
 Frontend: [se-2-challenges > challenge-0-simple-nft](https://github.com/scaffold-eth/se-2-challenges/tree/challenge-0-simple-nft)
 

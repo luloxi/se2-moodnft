@@ -11,33 +11,31 @@ interface NFTContainerProps {
 
 const NFTContainer: React.FC<NFTContainerProps> = ({ connectedAddress }) => {
   const [showAllNFTs, setShowAllNFTs] = useState<boolean>(false);
-  const [parsedSaVaGeesInfoData, setParsedSaVaGeesInfoData] = useState<any[] | null>(null);
+  const [parsedMoodNftInfoData, setParsedMoodNftInfoData] = useState<any[] | null>(null);
   const [displayCount, setDisplayCount] = useState<number>(12);
   const [ownerData, setOwnerData] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [selectedPage, setSelectedPage] = useState<number>(currentPage);
+  // const [selectedPage, setSelectedPage] = useState<number>(currentPage);
 
   const itemsPerPage = displayCount;
-  const totalPages = Math.ceil((parsedSaVaGeesInfoData?.length ?? 0) / itemsPerPage);
+  const totalPages = Math.ceil((parsedMoodNftInfoData?.length ?? 0) / itemsPerPage);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = currentPage * itemsPerPage;
 
   const { data: contractData } = useDeployedContractInfo("MoodNft");
 
-  const SaVaGeesContract = {
+  const MoodNftContract = {
     address: contractData?.address,
     abi: contractData?.abi,
   };
 
-  const SaVaGeesInfoRead = [];
-  const SaVaGeesOwnerRead = [];
+  const MoodNftInfoRead = [];
+  const MoodNftOwnerRead = [];
 
-  const filteredSaVaGeesInfoData = parsedSaVaGeesInfoData?.filter(
-    data => showAllNFTs || data.owner === connectedAddress,
-  );
+  const filteredMoodNftInfoData = parsedMoodNftInfoData?.filter(data => showAllNFTs || data.owner === connectedAddress);
 
-  const displayedSaVaGeesInfoData = filteredSaVaGeesInfoData?.slice(startIndex, endIndex);
+  const displayedMoodNftInfoData = filteredMoodNftInfoData?.slice(startIndex, endIndex);
 
   const { data: totalSupply } = useScaffoldContractRead({
     contractName: "MoodNft",
@@ -46,42 +44,42 @@ const NFTContainer: React.FC<NFTContainerProps> = ({ connectedAddress }) => {
 
   if (totalSupply) {
     for (let tokenId = 0; tokenId < totalSupply; tokenId++) {
-      SaVaGeesInfoRead.push({
-        ...SaVaGeesContract,
+      MoodNftInfoRead.push({
+        ...MoodNftContract,
         args: [tokenId],
         functionName: "tokenURI",
       });
-      SaVaGeesOwnerRead.push({
-        ...SaVaGeesContract,
+      MoodNftOwnerRead.push({
+        ...MoodNftContract,
         args: [tokenId],
         functionName: "ownerOf",
       });
     }
   }
 
-  const { data: SaVaGeesInfoData } = useContractReads({
-    contracts: SaVaGeesInfoRead,
+  const { data: MoodNftInfoData } = useContractReads({
+    contracts: MoodNftInfoRead,
     watch: true,
   });
 
-  const { data: SaVaGeesOwnerData } = useContractReads({
-    contracts: SaVaGeesOwnerRead,
+  const { data: MoodNftOwnerData } = useContractReads({
+    contracts: MoodNftOwnerRead,
     watch: true,
   });
 
   useEffect(() => {
-    if (SaVaGeesOwnerData) {
-      const updatedOwnerData = SaVaGeesOwnerData.map(contractData => {
+    if (MoodNftOwnerData) {
+      const updatedOwnerData = MoodNftOwnerData.map(contractData => {
         return contractData.result as string; // Get owner data
       });
 
       setOwnerData(updatedOwnerData);
     }
-  }, [SaVaGeesOwnerData]);
+  }, [MoodNftOwnerData]);
 
   useEffect(() => {
-    if (SaVaGeesInfoData) {
-      const updatedData = SaVaGeesInfoData.map((contractData, index) => {
+    if (MoodNftInfoData) {
+      const updatedData = MoodNftInfoData.map((contractData, index) => {
         const base64Data = (contractData.result as string).split(",")[1]; // Extract base64 part
         const decodedData = Buffer.from(base64Data, "base64").toString(); // Decode base64 to string
         return {
@@ -91,9 +89,9 @@ const NFTContainer: React.FC<NFTContainerProps> = ({ connectedAddress }) => {
         };
       });
 
-      setParsedSaVaGeesInfoData(updatedData);
+      setParsedMoodNftInfoData(updatedData);
     }
-  }, [SaVaGeesInfoData, ownerData]);
+  }, [MoodNftInfoData, ownerData]);
 
   const handleDisplayCountChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setDisplayCount(parseInt(event.target.value, 10));
@@ -107,15 +105,15 @@ const NFTContainer: React.FC<NFTContainerProps> = ({ connectedAddress }) => {
     setCurrentPage(newPage);
   };
 
-  const handlePageSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedPage(parseInt(event.target.value, 10)); // Update the selected page
-  };
+  // const handlePageSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setSelectedPage(parseInt(event.target.value, 10)); // Update the selected page
+  // };
 
-  const handleGoButtonClick = () => {
-    if (selectedPage >= 1 && selectedPage <= totalPages) {
-      setCurrentPage(selectedPage); // Update the current page based on the selected page
-    }
-  };
+  // const handleGoButtonClick = () => {
+  //   if (selectedPage >= 1 && selectedPage <= totalPages) {
+  //     setCurrentPage(selectedPage); // Update the current page based on the selected page
+  //   }
+  // };
 
   return (
     <div className="flex flex-col gap-4 my-8 px-5 justify-center">
@@ -145,10 +143,10 @@ const NFTContainer: React.FC<NFTContainerProps> = ({ connectedAddress }) => {
         </div>
       </div>
       <div className="flex flex-wrap gap-4 justify-center">
-        {SaVaGeesOwnerData &&
-          displayedSaVaGeesInfoData?.map((data, index) => (
+        {MoodNftOwnerData &&
+          displayedMoodNftInfoData?.map((data, index) => (
             <NFTCard
-              key={data.tokenId} // Use the tokenId from the fetched data
+              key={index} // Use the tokenId from the fetched data
               data={data}
               tokenId={data.tokenId} // Use the tokenId from the fetched data
               owner={data.owner}

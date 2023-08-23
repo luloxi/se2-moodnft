@@ -111,7 +111,7 @@ yarn deploy --network network_name
 You can verify your smart contract on Etherscan by running:
 
 ```
-yarn verify --network network_name
+yarn deploy:verify --network network_name
 ```
 
 ## Deploying your NextJS App

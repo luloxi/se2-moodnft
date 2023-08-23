@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Bars3Icon, BugAntIcon, MagnifyingGlassIcon, PlusIcon, SparklesIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, BugAntIcon, PlusIcon, SparklesIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
@@ -56,7 +56,7 @@ export const Header = () => {
       </li>
       {/* <li>
         <NavLink href="/blockexplorer">
-          <MagnifyingGlassIcon className="h-4 w-4" />
+          // <MagnifyingGlassIcon className="h-4 w-4" />
           Block Explorer
         </NavLink>
       </li> */}
@@ -94,7 +94,7 @@ export const Header = () => {
           </div>
           <div className="flex flex-col">
             <span className="font-bold leading-tight">MoodNFT</span>
-            <span className="text-xs">How's it feeling?</span>
+            <span className="text-xs">How&apos;s it feeling?</span>
           </div>
         </Link>
         <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">{navLinks}</ul>
