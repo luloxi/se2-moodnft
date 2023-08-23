@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
@@ -36,24 +37,29 @@ const Home: NextPage = () => {
       <div className="hero mt-10 bg-base-200">
         <div className="hero-content text-center">
           <div className="max-w-md">
-            <h1 className="text-5xl font-bold">Let&apos;s get moody!</h1>
+            <div className="flex items-center justify-center ">
+              <Image className="px-2" src="./happy.svg" alt="Happy SVG NFT Image" width={120} height={120} />
+              <h1 className="text-5xl font-bold">Let&apos;s get moody!</h1>
+              <Image className="px-2" src="./sad.svg" alt="Happy SVG NFT Image" width={120} height={120} />
+            </div>
+
             <div className="py-3">
-              If you completed{" "}
+              Inspired by{" "}
               <Link
                 className="underline-offset-4 underline"
                 href={"https://www.youtube.com/watch?v=sas02qSFZ74&t=27656s"}
               >
                 Lesson 11 of Patrick Collins Foundry course
               </Link>
-              , you may have wondered how MoodNFTs would work on a frontend. Here&apos;s a build made using{" "}
+              , this website was made using{" "}
               <Link className=" underline-offset-4 underline" href={"https://scaffoldeth.io/"}>
                 Scaffold-ETH 2
-              </Link>
-              !
+              </Link>{" "}
+              to display information about the NFT and allow to flip it's mood.
             </div>
 
             <div className="flex items-center justify-center mb-4">
-              Contract address: <Address address={"0x6CcCF5C1A350F5844C17706b8aD8AF3F28E1E6Ee"} />
+              MoodNft Contract address: <Address address={"0x6CcCF5C1A350F5844C17706b8aD8AF3F28E1E6Ee"} />
             </div>
 
             <div className="mb-4">
