@@ -1,5 +1,7 @@
 # Foundry MoodNft on Scaffold-ETH 2
 
+[LIVE VERSION HERE](https://se2-moodnft.vercel.app/)
+
 This project is a frontend to interact with MoodNft, using an adapted version of the project taught in [Patrick Collins foundry course](https://www.youtube.com/watch?t=27656&v=sas02qSFZ74&feature=youtu.be)
 
 Used [Scaffold-ETH 2](https://www.scaffoldeth.io/) from `npx create-eth@latest` command with the Foundry option to start this repo
