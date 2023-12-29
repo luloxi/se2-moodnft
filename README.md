@@ -4,6 +4,11 @@
 
 This project is a frontend to interact with MoodNft, using an adapted version of the project taught in [Patrick Collins foundry course](https://www.youtube.com/watch?t=27656&v=sas02qSFZ74&feature=youtu.be)
 
+- 🐣 Project being developed by [Newbie's Lounge](https://lulox.notion.site/Newbie-s-Lounge-68ea7c4c5f1a4ec29786be6a76516878)
+- 👷‍♀️ To view current development tasks, [join this Trello board](https://trello.com/invite/b/s0vot1BA/ATTI366c508087a404ccf9343def4d76d1ce6F7899AA/newbies-lounge).
+- 🧰 To chat with other buidlers about this project, [join our Telegram group](https://t.me/+FwCZPG51UhwzOTZh)
+- 🛠️ To collaborate, [fork and pull](https://github.com/susam/gitpr) a request to this repo.
+
 Used [Scaffold-ETH 2](https://www.scaffoldeth.io/) from `npx create-eth@latest` command with the Foundry option to start this repo
 
 ## Reference repos
